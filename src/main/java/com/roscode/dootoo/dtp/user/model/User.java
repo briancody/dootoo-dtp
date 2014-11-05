@@ -2,21 +2,30 @@ package com.roscode.dootoo.dtp.user.model;
 
 import java.util.List;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.geo.Point;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
+import org.springframework.data.mongodb.core.index.Indexed;
 
-import com.roscode.dootoo.dtp.model.Location;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class User {
 
 	@Id
+	@Email
+	@Indexed
 	private String id; // email address
+	@JsonIgnore
 	private String password;
 	
 	private String firstName;
 	private String lastName;
 	private String prefZip;
 	private List<Connection> connections;
-	private Location currentLoc;
+	@GeoSpatialIndexed(type=GeoSpatialIndexType.GEO_2DSPHERE)
+	private Point currentLoc;
 	
 	public User() {
 		// default constructor
@@ -80,11 +89,11 @@ public class User {
 		this.connections = connections;
 	}
 
-	public Location getCurrentLoc() {
+	public Point getCurrentLoc() {
 		return currentLoc;
 	}
 
-	public void setCurrentLoc(Location currentLoc) {
+	public void setCurrentLoc(Point currentLoc) {
 		this.currentLoc = currentLoc;
 	}
 

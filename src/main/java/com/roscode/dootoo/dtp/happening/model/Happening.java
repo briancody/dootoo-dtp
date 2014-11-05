@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.geo.Point;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
-import com.roscode.dootoo.dtp.model.Location;
 import com.roscode.dootoo.dtp.user.model.User;
 
 public class Happening {
@@ -18,12 +23,17 @@ public class Happening {
 	private String title;
 	private String description;
 	
+	@DBRef(lazy = true)
+	private User host;
+	
 	private String address;
 	private String city;
 	private String state;
 	private Integer zip;
-	private Location loc;
+	@GeoSpatialIndexed(type=GeoSpatialIndexType.GEO_2DSPHERE)
+	private Point loc;
 	
+	@Indexed
 	private String[] tags;
 	private String[] assets;
 	
@@ -37,7 +47,9 @@ public class Happening {
 	private Date startTime;
 	private Date endTime;
 	
+	@CreatedBy
 	private String createdBy;
+	@CreatedDate
 	private Date createDate;
 	private String modifiedBy;
 	private Date modifiedDate;
@@ -70,6 +82,14 @@ public class Happening {
 		this.description = description;
 	}
 	
+	public User getHost() {
+		return host;
+	}
+
+	public void setHost(User host) {
+		this.host = host;
+	}
+
 	public String getAddress() {
 		return address;
 	}
@@ -102,14 +122,14 @@ public class Happening {
 		this.zip = zip;
 	}
 	
-	public Location getLoc() {
+	public Point getLoc() {
 		return loc;
 	}
-	
-	public void setLoc(Location loc) {
+
+	public void setLoc(Point loc) {
 		this.loc = loc;
 	}
-	
+
 	public String[] getTags() {
 		return tags;
 	}
