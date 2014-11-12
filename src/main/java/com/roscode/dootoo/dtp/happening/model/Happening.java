@@ -30,7 +30,7 @@ public class Happening {
 	private String city;
 	private String state;
 	private Integer zip;
-	@GeoSpatialIndexed(type=GeoSpatialIndexType.GEO_2DSPHERE)
+	@GeoSpatialIndexed(type=GeoSpatialIndexType.GEO_2D)
 	private Point loc;
 	
 	@Indexed

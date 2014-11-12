@@ -24,7 +24,7 @@ public class User {
 	private String lastName;
 	private String prefZip;
 	private List<Connection> connections;
-	@GeoSpatialIndexed(type=GeoSpatialIndexType.GEO_2DSPHERE)
+	@GeoSpatialIndexed(type=GeoSpatialIndexType.GEO_2D)
 	private Point currentLoc;
 	
 	public User() {
