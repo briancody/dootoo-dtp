@@ -2,6 +2,7 @@ package com.roscode.dootoo.dtp.happening.repo;
 
 import java.util.List;
 
+import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,6 +14,6 @@ import com.roscode.dootoo.dtp.happening.model.Happening;
 public interface HappeningRepository extends MongoRepository<Happening, String> {
 
 	List<Happening> findByTagsIn(@Param("tags") String [] tags);
-	List<Happening> findByLocNear(@Param("loc") Point point);
-	List<Happening> findByTagsInAndLocNear(@Param("tags") String [] tags, @Param("loc") Point point);
+	List<Happening> findByLocNear(@Param("loc") Point point, @Param("distance") Distance distance);
+	List<Happening> findByTagsInAndLocNear(@Param("tags") String [] tags, @Param("loc") Point point, @Param("distance") Distance distance);
 }

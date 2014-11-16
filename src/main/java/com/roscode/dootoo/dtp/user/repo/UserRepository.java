@@ -11,5 +11,6 @@ import com.roscode.dootoo.dtp.user.model.User;
 @RepositoryRestResource(collectionResourceRel="users",path="users")
 public interface UserRepository extends PagingAndSortingRepository<User, String> {
 
+	User findById(@Param("email") String id);
 	List<User> findByIdAndConnectionsGroupsIn(@Param("email") String id, @Param("groups") String groups);
 }

@@ -24,8 +24,10 @@ public class User {
 	private String lastName;
 	private String prefZip;
 	private List<Connection> connections;
-	@GeoSpatialIndexed(type=GeoSpatialIndexType.GEO_2D)
+	@GeoSpatialIndexed(type=GeoSpatialIndexType.GEO_2DSPHERE)
 	private Point currentLoc;
+	
+	private String profileImg;
 	
 	public User() {
 		// default constructor
@@ -95,6 +97,14 @@ public class User {
 
 	public void setCurrentLoc(Point currentLoc) {
 		this.currentLoc = currentLoc;
+	}
+
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
 	}
 
 }
