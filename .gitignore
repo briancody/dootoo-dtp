@@ -2,4 +2,4 @@ target/
 .settings/
 .project
 .classpath
-*/shiro
+src/main/java/com/roscode/dootoo/dtp/security/shiro
