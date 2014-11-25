@@ -12,6 +12,9 @@ import com.roscode.dootoo.dtp.happening.model.Happening;
 
 @RepositoryRestResource(collectionResourceRel="happenings",path="happenings")
 public interface HappeningRepository extends MongoRepository<Happening, String> {
+	
+	@Override
+	<S extends Happening> S save(S entity);
 
 	List<Happening> findByTagsIn(@Param("tags") String [] tags);
 	List<Happening> findByLocNear(@Param("loc") Point point, @Param("distance") Distance distance);

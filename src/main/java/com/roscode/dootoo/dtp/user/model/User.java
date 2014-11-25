@@ -2,6 +2,8 @@ package com.roscode.dootoo.dtp.user.model;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Email;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.geo.Point;
@@ -9,15 +11,14 @@ import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.index.Indexed;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class User {
 
 	@Id
 	@Email
 	@Indexed
 	private String id; // email address
-	@JsonIgnore
+	@NotNull
+//	@JsonIgnore
 	private String password;
 	
 	private String firstName;
